@@ -61,12 +61,14 @@ auth.books
 auth.books = "Man on the Moon"
 auth.books
 class Publisher {
+    #authors;
+    #books;
     constructor(authors, books) {
-        this.authors = authors;
-        this.books = books;
+        this.#authors = authors;
+        this.#books = books;
     }
     get authors() {
-        console.log(`The company has published these authors- ${this.#authors}`)
+        console.log(`The company has published these authors- ${this.#authors} `)
     }
     get books() {
         console.log("This company has published these books- ", this.#books)
@@ -97,8 +99,9 @@ class Publisher {
 //     - For each class, add 2 properties and 2 methods to each.The properties and methods should make sense, considering what the classes are supposed to be representing.
 
 class Umbrella {
-    constructor(name) {
-        this.umbrella = name;
+    constructor(name, hq) {
+        this.name = name;
+        this.hq = hq;
     }
 }
 class Company extends Umbrella {
@@ -126,7 +129,7 @@ class Site extends Company {
         console.log(`${this.location} wants to hire you!`)
     }
 }
-const alleg = new Umbrella("Allegis");
+const alleg = new Umbrella("Allegis", "ChiTown, Colorado");
 // console.log(allegis)
 const tek = new Company("TEKSystems", 100000, alleg)
 console.log(tek)
@@ -158,21 +161,21 @@ class Employee extends Company {
     }
 }
 const fred = new Employee("Fred", "CEO", 100000, tek)
-// const george = new Employee("George", "Manager", 70000, tek)
-// const james = new Employee("James", "Engineer", 60000, tek)
-// const carl = new Employee("Carl", "Engineer", 61000, aero)
-// const fredd = new Employee("Freddie", "Secretary", 10000, aero)
-// const bill = new Employee("Bill", "Lawyer", 20000, aero)
-// const jim = new Employee("Jim", "Financial Officer", 60000, space)
-// const jimmy = new Employee("Jimmy", "HR Personel", 55000, space)
-// const jimbo = new Employee("Jimbo", "Captain", 75000, space)
-// // console.log(fred, james, bill, jim, jimmy, jimbo)
-// space.hostileTakeover("Google");
-// space.firesEmployee(jim);
-// dallas.selfDestruct("aliens")
-// dallas.recruit();
-// fred.raise()
-// jim.promotion(fred);
+const george = new Employee("George", "Manager", 70000, tek)
+const james = new Employee("James", "Engineer", 60000, tek)
+const carl = new Employee("Carl", "Engineer", 61000, aero)
+const fredd = new Employee("Freddie", "Secretary", 10000, aero)
+const bill = new Employee("Bill", "Lawyer", 20000, aero)
+const jim = new Employee("Jim", "Financial Officer", 60000, space)
+const jimmy = new Employee("Jimmy", "HR Personel", 55000, space)
+const jimbo = new Employee("Jimbo", "Captain", 75000, space)
+// console.log(fred, james, bill, jim, jimmy, jimbo)
+space.hostileTakeover("Google");
+space.firesEmployee(jim);
+dallas.selfDestruct("aliens")
+dallas.recruit();
+fred.raise()
+jim.promotion(fred);
 // ******************************************************************************************************************************
 //     Bonus Exercise:
 
@@ -183,6 +186,8 @@ const fred = new Employee("Fred", "CEO", 100000, tek)
 
 // Each Book instance should contain instances of the Authors, the Publishers, and the Reviews pertinent to each book.This exercise is using
 // the advanced encapsulation concept of "composition", reflecting a "HAS A" relationship.
+
+
 function Bookstore(books) {
     let bookstore = {
         bookstore,
