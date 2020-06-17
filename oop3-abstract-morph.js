@@ -1,6 +1,8 @@
 
 /*
-1. Create a Abstract Creature class that is NOT allowed to be instantiated. Find a way to prevent this class from being instantiated with an instance.  In the Creature class, include two abstract methods.  move(), and act().  These methods are NOT allowed to be invoked from the Abstract class, so throw an error in these methods if they are invoked by any inherited sub-classes.  
+1. Create a Abstract Creature class that is NOT allowed to be instantiated. Find a way to prevent this class from being instantiated with 
+an instance.  In the Creature class, include two abstract methods.  move(), and act().  These methods are NOT allowed to be invoked from the
+ Abstract class, so throw an error in these methods if they are invoked by any inherited sub-classes.  
 
 Create at least 3 sub-classes that inherit from the Abstract Creature Class.  Example sub-classes are: 
     -Human
@@ -9,7 +11,9 @@ Create at least 3 sub-classes that inherit from the Abstract Creature Class.  Ex
     -Reptile
     -Fish
 
-These sub-classes MUST implement the abstract methods of move() and act(), which are found on the abstract Creature class. In addition to the 2 abstract methods, implement 1 unique method on each sub-class.  Also, each sub-class MUST have at least 2 unique property fields on them.  Example property fields are:
+These sub-classes MUST implement the abstract methods of move() and act(), which are found on the abstract Creature class. In addition to the 2
+ abstract methods, implement 1 unique method on each sub-class.  Also, each sub-class MUST have at least 2 unique property fields on them. 
+  Example property fields are:
     -name
     -weight
     -food
@@ -17,19 +21,21 @@ These sub-classes MUST implement the abstract methods of move() and act(), which
 
 */
 
-    class Creature {
-        //your code here...
-    }
+class Creature {
+    //your code here...
+}
 
-    class Human extends Creature {
-        //your code here...
-    }
+class Human extends Creature {
+    //your code here...
+}
 
 
 
 
 /*
-2. For the following Person class, modify the class methods, so the sub-class methods will successfully fire.  For the Teacher method, a set of methods have already been set up.  For the Student class, it will be up to you to determine how to set up the methods to fire in the Student sub-class.  :
+2. For the following Person class, modify the class methods, so the sub-class methods will successfully fire.  For the Teacher method, 
+a set of methods have already been set up.  For the Student class, it will be up to you to determine how to set up the methods to fire 
+in the Student sub-class.  :
 */
 
 class Person {
@@ -43,11 +49,11 @@ class Person {
         console.log(this.name + " is sleeping");
     }
 
-    code = function() {
+    code = function () {
         console.log(this.name + " is coding");
     }
 
-    repeat = function() {
+    repeat = function () {
         console.log(this.name + " is repeating the above steps, yet another time");
     }
 
@@ -128,11 +134,11 @@ student.repeat();
 
 class Cook {
 
-    prepare(food1,food2,food3) {
+    prepare(food1, food2, food3) {
         console.log("The cook is cooking " + food1, food2, food3);
     }
 
-    prepare = function() {
+    prepare = function () {
         console.log('The cook is cooking');
     }
 
@@ -144,7 +150,8 @@ class Cook {
 
 const cook = new Cook();
 
-cook.prepare("turkey","salami","pizza");
+cook.prepare("turkey", "salami", "pizza");
 
 cook.explain();
+//cook.explain("Well, if we are reusing the code, aka the types of food, then we should pass it in to the class itself so that we don't have to repeat ourselves for any function that requires the food");
 

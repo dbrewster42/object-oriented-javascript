@@ -9,9 +9,11 @@
 //     on the classes, without directly manipulating the values themselves. 
 
 class Book {
+    #title;
     #author;
     #publisher;
-    constructor(author, publisher) {
+    constructor(title, author, publisher) {
+        this.#title = title;
         this.#author = author;
         this.#publisher = publisher;
     }
@@ -28,7 +30,7 @@ class Book {
         this.#publisher = target;
     }
 }
-const book = new Book("Dahl", "Penguin")
+const book = new Book("James and the Giant Peach", "Dahl", "Penguin")
 console.log(book)
 book.publisher;
 book.author;
@@ -61,9 +63,11 @@ auth.books
 auth.books = "Man on the Moon"
 auth.books
 class Publisher {
+    #name;
     #authors;
     #books;
-    constructor(authors, books) {
+    constructor(name, authors = [], books = []) {
+        this.#name = name;
         this.#authors = authors;
         this.#books = books;
     }
@@ -99,9 +103,9 @@ class Publisher {
 //     - For each class, add 2 properties and 2 methods to each.The properties and methods should make sense, considering what the classes are supposed to be representing.
 
 class Umbrella {
-    constructor(name, hq) {
-        this.name = name;
-        this.hq = hq;
+    constructor(name) {
+        this.umbrella = name;
+        // this.hq = hq;
     }
 }
 class Company extends Umbrella {
@@ -129,12 +133,13 @@ class Site extends Company {
         console.log(`${this.location} wants to hire you!`)
     }
 }
-const alleg = new Umbrella("Allegis", "ChiTown, Colorado");
+
 // console.log(allegis)
-const tek = new Company("TEKSystems", 100000, alleg)
+const tek = new Company("TEKSystems", 100000, "Allegis")
+// const alleg = new Umbrella("Allegis", "ChiTown, Colorado");
 console.log(tek)
-const aero = new Company("Aerotek", 10000, alleg)
-const space = new Company("Space Force", 50, alleg)
+const aero = new Company("Aerotek", 10000)
+const space = new Company("Space Force", 50)
 console.log(aero, "boo", space)
 const dallas = new Site("Dallas", aero)
 const chicago = new Site("Chicago", aero)
@@ -145,10 +150,10 @@ const houston = new Site("Houst", space)
 const sa = new Site("San Antonio", tek)
 const dallas3 = new Site("Dallas", tek)
 const seattle = new Site("Seattle", tek)
-// console.log(dallas, ny, la, dallas2, dallas3, sa)
+console.log(dallas, ny, la, dallas2, dallas3, sa)
 class Employee extends Company {
     constructor(eName, title, salary, company) {
-        super(company.companyName);
+        super(company.companyName, company.name);
         this.eName = eName;
         this.title = title;
         this.salary = salary;
@@ -169,7 +174,7 @@ const bill = new Employee("Bill", "Lawyer", 20000, aero)
 const jim = new Employee("Jim", "Financial Officer", 60000, space)
 const jimmy = new Employee("Jimmy", "HR Personel", 55000, space)
 const jimbo = new Employee("Jimbo", "Captain", 75000, space)
-// console.log(fred, james, bill, jim, jimmy, jimbo)
+console.log(fred, james, bill, jim, jimmy, jimbo)
 space.hostileTakeover("Google");
 space.firesEmployee(jim);
 dallas.selfDestruct("aliens")
@@ -188,59 +193,84 @@ jim.promotion(fred);
 // the advanced encapsulation concept of "composition", reflecting a "HAS A" relationship.
 
 
-function Bookstore(books) {
-    let bookstore = {
-        bookstore,
-        books: []
-    }
-    return Object.assign(
-        books,
-        bookstore(books)
-    )
-}
+// function Bookstore(books) {
+//     let bookstore = {
+//         bookstore,
+//         books: []
+//     }
+//     return Object.assign(
+//         books,
+//         bookstore(books)
+//     )
+// }
 
-function Book(name, author, publisher, review) {
-    let book = {
-        name,
-        author,
-        publisher,
-        review
-    }
-    return Object.assign(
-        book,
-        name(book),
-        author(book),
-        publisher(book),
-        review(book)
-    )
-}
+// function Book2(name, author, publisher, review) {
+//     let book = {
+//         name,
+//         author,
+//         publisher,
+//         review
+//     }
+//     return Object.assign(
+//         book,
+//         name(book),
+//         author(book),
+//         publisher(book),
+//         review(book)
+//     )
+// }
 
-function Author(name, book) {
-    let author = { name, book }
-    return Object.assign(
-        author,
-        book(author)
-    )
-}
+// function Author2(name, book) {
+//     let author = { name, book }
+//     return Object.assign(
+//         author,
+//         book(author)
+//     )
+// }
 
-function Publisher(name, book) {
-    let publisher = {
-        name,
-        book
-    }
-    return Object.assign(
-        publisher,
-        book(publisher)
-    )
-}
+// function Publisher2(name, book) {
+//     let publisher = {
+//         name,
+//         book
+//     }
+//     return Object.assign(
+//         publisher,
+//         book(publisher)
+//     )
+// }
 
-function Review(book, review) {
-    let review = {
-        book,
-        review
+// function Review2(book, review) {
+//     let review2 = {
+//         book,
+//         review
+//     }
+//     return Object.assign(
+//         review,
+//         book(review)
+//     )
+// }
+
+class Bookstore {
+    #books = [];
+
+    constructor(name) {
+        this.name = name;
     }
-    return Object.assign(
-        review,
-        book(review)
-    )
+
+    set book(book) {
+        this.#books.push(book);
+    }
+    get books() {
+        console.log(this.#books);
+    }
+
 }
+const halfPrice = new Bookstore("Half Price Books")
+const publ = new Publisher("Penguins Publishing")
+console.log(publ)
+// const author = new Author("")
+const book2 = new Book("Space Stuff", auth, publ)
+halfPrice.book = book;
+halfPrice.book = book2;
+// console.log(halfPrice.books)
+halfPrice.books
