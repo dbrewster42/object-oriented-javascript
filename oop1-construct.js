@@ -43,7 +43,6 @@ class RainforestCreatures {
         console.log("The " + this.name + " likes to " + this.action);
     }
 
-
 }
 const capy = new RainforestCreatures("capybara", 140, "join together for protection")
 capy.intro();
@@ -60,10 +59,8 @@ const ocelot = new RainforestCreatures("Ocelot", 35, "rest in trees")
 ocelot.intro();
 ocelot.act();
 
-
 /*3. Convert the following Object Literals into a general class called Shape, and instantiate the class to generate the object literals
 */
-
 
 class Shape {
     constructor(name, sides, radius = 1) {
@@ -112,8 +109,6 @@ const circle = new Shape("Circle", [5])
 circle.calcArea();
 circle.calcCircumference();
 
-
-
 /*********************************************** 
 Bonus Exercises:
 
@@ -122,24 +117,19 @@ Bonus Exercises:
 // the triangle instead of hard coding it, you will also obtain the bonus for this exercise.  The dimensions for the triangle are already provided
  for you in the triangle object literal.
 
-
 //5. Below is a class Earth.  It is instantiated with a earth 'instance'.  Because there is only 1 known earth, we don't want multiple 
 instances of earth.  Modify the class so the properties are usuable WITHOUT instantiating the class.
 
 */
-
 class Earth {
     static name = "earth";
     static planetNum = 3; //distance from the sun.  1-mercury, 2-venus, 3-earth, ...
-
     // constructor() {
     //     this.name = "Earth";
     //     this.planetNum = 3;
     // }
-
 }
 
 // const earth = new Earth('earth', 3);
 console.log(Earth.name);
 console.log(Earth.planetNum);
-
