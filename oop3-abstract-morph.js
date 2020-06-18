@@ -18,20 +18,82 @@ These sub-classes MUST implement the abstract methods of move() and act(), which
     -weight
     -food
     -age
-
 */
 
 class Creature {
-    //your code here...
+    constructor() {
+        if (this.constructor == Creature) {
+            throw new Error("Unable to instantiate Creature class")
+        }
+    }
+    move() {
+        throw new Error("This is an abstract method. You cannot invoke this method");
+    }
+    act() {
+        throw new Error("This is an abstract method. You cannot invoke this method");
+    }
 }
 
 class Human extends Creature {
-    //your code here...
+    constructor(name, age) {
+        super();
+        this.name = name;
+        this.age = age;
+
+    }
+    move() {
+        console.log(`${this.name} runs through the city`)
+    }
+    act() {
+        console.log(`${this.name} builds a class!`)
+    }
+    special() {
+        if (this.age < 21)
+            console.log(`${this.name} plays legos!`)
+        else
+            console.log(`${this.name} drinks some beer`)
+    }
 }
 
+class Dragon extends Creature {
+    constructor(name, age) {
+        super();
+        this.name = name;
+        this.age = age;
+    }
+    move() {
+        console.log(`${this.name} flies through the castle`)
+    }
+    act(target) {
+        console.log(`${this.name} burns ${target} to a crisp with his firebreath`)
+    }
+    special() {
+        console.log(`${this.name} looks into your future and sees that you will die`)
+    }
+}
 
-
-
+class Dinosaur extends Creature {
+    constructor(name, color) {
+        super();
+        this.name = name;
+        this.color = color;
+    }
+    move() {
+        console.log(`${this.name} rumbles through the forest`)
+    }
+    act() {
+        console.log(`${this.name} stomps your face`)
+    }
+    special() {
+        console.log(`${this.name} transforms into a fossil`)
+    }
+}
+const bill = new Human("Bill", 22)
+bill.move()
+bill.act()
+bill.special()
+const barney = new Dinosaur("Barney", "green and purple")
+const smaug = new Dragon("Smaug", 400)
 /*
 2. For the following Person class, modify the class methods, so the sub-class methods will successfully fire.  For the Teacher method, 
 a set of methods have already been set up.  For the Student class, it will be up to you to determine how to set up the methods to fire 
@@ -40,26 +102,25 @@ in the Student sub-class.  :
 
 class Person {
     name;
-
     eat() {
         console.log(this.name + " is eating");
-    }
+    } ager
 
-    sleep = () => {
+    sleep() {
         console.log(this.name + " is sleeping");
     }
 
-    code = function () {
+    code() {
         console.log(this.name + " is coding");
     }
 
-    repeat = function () {
+    repeat() {
         console.log(this.name + " is repeating the above steps, yet another time");
     }
 
     explain() {
         //this function should contain a console.log() explaining what you had to do to get the correct functions to work, and the reasoning behind what you did.
-        console.log("this explain method should contain explain what you had to do to get the correct functions to work, and the reasoning behind what you did.");
+        console.log("I only had to make constructors in the children and then changed all their functions into assignments rather than declarations so they would be a field rather than a prototype and get called first. I iniatally was incorrect calling the name in my constructor which caused it to keep on printing the parent so I also changed all the parent functions into declarations even though that was overkill since the child gets priority in fields (and functions)");
     }
 
 }
@@ -74,45 +135,58 @@ class Teacher extends Person {
         this.name = name;
     }
 
-    eat() {
+    eat = () => {
         console.log(this.name + " loves to teach before eating");
     }
 
-    sleep() {
+    sleep = function () {
         console.log(this.name + " sleeps after preparing the lesson plan");
     }
 
-    code = () => {
+    code = function () {
         console.log(this.name + " codes first, then teaches it the next day.");
     }
 
-    repeat() {
+    repeat = function () {
         console.log(this.name + " teaches, codes, eats, sleeps, and repeats");
     }
 }
 
 
 class Student extends Person {
+    constructor(name) {
+        super(name);
+        this.name = name;
+    }
     //set up your methods in this student class, so all of these methods will override the methods from the super class.
-
+    eat = () => {
+        console.log(this.name + " loves to study while eating");
+    }
     //eat method should print out - <stduent name> studies, then eats
-
+    sleep = function () {
+        console.log(this.name + " sleeps with a textbook beneath his chin");
+    }
     //sleep method should print out, <student name> studies coding so much, that they dream about it in their sleep
-
+    code = function () {
+        console.log(this.name + " codes first, then teaches it the next day.");
+    }
     //code method should print out, <student name> was first overwhelmed by coding, but kept at it, and now has become a coding guru!
-
+    repeat = function () {
+        console.log(this.name + " teaches, codes, eats, sleeps, and repeats");
+    }
     //repeat method should print out, <student name> keeps on studying, coding, eating, and sleeping, and puts it all on repeat.  
 
 }
 
 
 const teacher = new Teacher("Dr. Teacher");
-
+// teach.eat()
+// const teacher = new Teacher(teach)
 teacher.explain();
 
 const student = new Student("Pupil Student");
 
-student.explain();
+// student.explain();
 
 teacher.eat();
 teacher.sleep();
@@ -134,16 +208,16 @@ student.repeat();
 
 class Cook {
 
-    prepare(food1, food2, food3) {
+    prepare = function (food1, food2, food3) {
         console.log("The cook is cooking " + food1, food2, food3);
     }
 
-    prepare = function () {
+    prepare() {
         console.log('The cook is cooking');
     }
 
     explain = () => {
-        console.log("what could you do to get the prepare function to print out the food items that are being passed in to the function?  Once you figure it out, Write down your thought process in this explain method.");
+        console.log("I simply changed the function expression to a function declaration and vise versa. This is because an expression assigns the function making it a field rather than a prototype. And in classes, fields are read before prototypes so that fixed the problem");
     }
 
 }
